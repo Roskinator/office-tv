@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="refresh" content="900">
+<title>North Lake Office TV</title>
+<style>
+  html, body { margin: 0; padding: 0; width: 100%; height: 100%; background: #14213D; overflow: hidden; cursor: none; }
+  .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: none; }
+</style>
+</head>
+<body>
+<script>
+// Plain old JavaScript on purpose so older smart-TV browsers can run it.
+// slides.js lists the slides; the page reloads itself every 15 minutes to pick up changes.
+document.write('<script src="slides.js?t=' + new Date().getTime() + '"><\/script>');
+</script>
+<script>
+(function () {
+  var list = window.SLIDES || [], secs = window.SECONDS || 20, v = window.VERSION || '';
+  var imgs = [], i, cur = 0;
+  for (i = 0; i < list.length; i++) {
+    var im = document.createElement('img');
+    im.className = 'slide';
+    im.src = list[i] + '?v=' + v;
+    document.body.appendChild(im);
+    imgs.push(im);
+  }
+  if (!imgs.length) return;
+  imgs[0].style.display = 'block';
+  if (imgs.length > 1) {
+    setInterval(function () {
+      imgs[cur].style.display = 'none';
+      cur = (cur + 1) % imgs.length;
+      imgs[cur].style.display = 'block';
+    }, secs * 1000);
+  }
+})();
+</script>
+</body>
+</html>
